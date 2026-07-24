@@ -35,7 +35,7 @@ def test_binary_search_recursive():
         start_time = time.time()
         result = binary_search_recursive(arr, 0, n - 1, x)
         end_time = time.time()
-
+#Managed
         # Display result
         if result == -1:
             print(f"Element {x} not found in the array")
