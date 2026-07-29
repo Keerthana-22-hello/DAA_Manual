@@ -33,7 +33,7 @@ This application demonstrates multiple Design and Analysis of Algorithms experim
 - 🔍 String Matching Algorithms
 - 🌳 Minimum Spanning Tree (Prim & Kruskal)
 - 🚦 Dijkstra Shortest Path
-- 📌 Experiment 4
+- 📌 Interpolation
 """
 )
 
@@ -50,7 +50,7 @@ page = st.sidebar.radio(
         "🔍 String Matching",
         "🌳 Minimum Spanning Tree",
         "🚦 Dijkstra Algorithm",
-        "📌 Experiment 4"
+        "📌 Interpolation"
     )
 )
 
@@ -116,7 +116,7 @@ if page == "🏠 Home":
 
         st.markdown(
         """
-        ### 📌 Experiment 4
+        ### 📌 Interpolation
 
         Add your fourth DAA experiment here.
         """
