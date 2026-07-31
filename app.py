@@ -52,7 +52,7 @@ page = st.sidebar.radio(
         "🔍 String Matching",
         "🌳 Minimum Spanning Tree",
         "🚦 Dijkstra Algorithm",
-        "📌 Interpolation"
+        "📌 Interpolation",
         "📌 Divide and Conquer"
     )
 )
