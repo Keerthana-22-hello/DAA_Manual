@@ -1,10 +1,11 @@
+
 import streamlit as st
 
 import ex1
 import ex2
 import ex3
 import ex4
-
+import ex5
 # -------------------------------------------------
 # Page Configuration
 # -------------------------------------------------
@@ -34,6 +35,7 @@ This application demonstrates multiple Design and Analysis of Algorithms experim
 - 🌳 Minimum Spanning Tree (Prim & Kruskal)
 - 🚦 Dijkstra Shortest Path
 - 📌 Interpolation
+- 📌 Divide and Conquer
 """
 )
 
@@ -51,6 +53,7 @@ page = st.sidebar.radio(
         "🌳 Minimum Spanning Tree",
         "🚦 Dijkstra Algorithm",
         "📌 Interpolation"
+        "📌 Divide and Conquer"
     )
 )
 
@@ -118,9 +121,17 @@ if page == "🏠 Home":
         """
         ### 📌 Interpolation
 
-        Add your fourth DAA experiment here.
+        Find the interpolated value for a given set of data points using this.
         """
         )
+        
+        st.markdown(
+        """
+        ### 📌 Divide and Conquer
+
+        Find the minimum and maximum element in an array using the Divide and Conquer technique.
+        """
+                )
 
 elif page == "🔍 String Matching":
 
@@ -137,3 +148,7 @@ elif page == "🚦 Dijkstra Algorithm":
 elif page == "📌 Interpolation":
 
     ex4.app()
+
+elif page == "📌 Divide and Conquer":
+
+    ex5.app()

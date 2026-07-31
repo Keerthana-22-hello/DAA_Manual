@@ -1,5 +1,5 @@
 import heapq
-
+import random 
 
 # =====================================================
 # Disjoint Set (Union-Find)
@@ -240,6 +240,68 @@ def reconstruct_path(previous, source, destination):
         return path
 
     return []
+
+# =====================================================
+# Min-Max Value by Applying Divide and Conquer Technique 
+# =====================================================
+comparison_count = 0
+
+
+def min_max_dc(arr, low, high):
+    """
+    Find the minimum and maximum element in an array
+    using the Divide and Conquer technique.
+    """
+    global comparison_count
+
+    # Base case: Only one element
+    if low == high:
+        return arr[low], arr[low]
+
+    # Base case: Two elements
+    if high == low + 1:
+        comparison_count += 1
+
+        if arr[low] < arr[high]:
+            return arr[low], arr[high]
+        else:
+            return arr[high], arr[low]
+
+    # Divide the array into two halves
+    mid = (low + high) // 2
+
+    left_min, left_max = min_max_dc(arr, low, mid)
+    right_min, right_max = min_max_dc(arr, mid + 1, high)
+
+    # Combine the results
+    comparison_count += 1
+    overall_min = left_min if left_min < right_min else right_min
+
+    comparison_count += 1
+    overall_max = left_max if left_max > right_max else right_max
+
+    return overall_min, overall_max
+
+
+def min_max_naive(arr):
+    """
+    Find minimum and maximum using the normal linear method.
+    """
+    minimum = maximum = arr[0]
+    comparisons = 0
+
+    for x in arr[1:]:
+        comparisons += 1
+        if x < minimum:
+            minimum = x
+
+        comparisons += 1
+        if x > maximum:
+            maximum = x
+
+    return minimum, maximum, comparisons
+
+
 
 
 # =====================================================
