@@ -6,7 +6,8 @@ import time
 
 import algorithm
 
-
+st.write("Algorithm module:", algorithm.__file__)
+st.write("Has matrix_chain_order:", hasattr(algorithm, "matrix_chain_order"))
 def app():
 
     st.header("📌 Matrix Chain Multiplication using Dynamic Programming")

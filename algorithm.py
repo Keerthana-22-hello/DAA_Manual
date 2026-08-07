@@ -550,3 +550,192 @@ def matrix_chain_statistics(dims):
         "space_complexity": "O(n²)"
 
     }
+    
+# =====================================================
+# N-Queens Problem using Backtracking
+# =====================================================
+
+def is_safe(board, row, col):
+    """
+    Check whether a queen can be placed at (row, col).
+
+    Parameters
+    ----------
+    board : list
+        Current board representation where board[i] is the
+        column position of the queen in row i.
+    row : int
+        Current row.
+    col : int
+        Current column.
+
+    Returns
+    -------
+    bool
+        True if the position is safe, otherwise False.
+    """
+
+    for prev_row in range(row):
+
+        placed_col = board[prev_row]
+
+        # Same column
+        if placed_col == col:
+            return False
+
+        # Same diagonal
+        if abs(prev_row - row) == abs(placed_col - col):
+            return False
+
+    return True
+
+
+# =====================================================
+# Solve N-Queens using Backtracking
+# =====================================================
+
+def solve_n_queens(n):
+    """
+    Solves the N-Queens problem using Backtracking.
+
+    Parameters
+    ----------
+    n : int
+        Number of queens / board size.
+
+    Returns
+    -------
+    solutions : list
+        List of all valid solutions.
+
+    backtracks : int
+        Number of backtracking operations performed.
+    """
+
+    board = [-1] * n
+    solutions = []
+    backtrack_count = [0]
+
+    def backtrack(row):
+
+        if row == n:
+            solutions.append(board[:])
+            return
+
+        for col in range(n):
+
+            if is_safe(board, row, col):
+
+                board[row] = col
+
+                backtrack(row + 1)
+
+                board[row] = -1
+
+                backtrack_count[0] += 1
+
+    backtrack(0)
+
+    return solutions, backtrack_count[0]
+
+
+# =====================================================
+# Convert Solution to Chessboard
+# =====================================================
+
+def board_to_matrix(solution, n):
+    """
+    Converts a solution into a 2D board.
+
+    Returns
+    -------
+    list
+        2D list containing "Q" and ".".
+    """
+
+    board = []
+
+    for row in range(n):
+
+        current_row = []
+
+        for col in range(n):
+
+            if solution[row] == col:
+                current_row.append("Q")
+            else:
+                current_row.append(".")
+
+        board.append(current_row)
+
+    return board
+
+
+# =====================================================
+# Get All Chessboards
+# =====================================================
+
+def generate_board_matrices(solutions, n):
+    """
+    Converts every solution into a board matrix.
+
+    Parameters
+    ----------
+    solutions : list
+        List of solution arrays.
+
+    n : int
+        Board size.
+
+    Returns
+    -------
+    list
+        List of board matrices.
+    """
+
+    boards = []
+
+    for solution in solutions:
+        boards.append(board_to_matrix(solution, n))
+
+    return boards
+
+
+# =====================================================
+# Statistics
+# =====================================================
+
+def nqueen_statistics(n, solutions, backtracks):
+    """
+    Returns statistics for the N-Queens problem.
+
+    Parameters
+    ----------
+    n : int
+        Board size.
+
+    solutions : list
+        List of solutions.
+
+    backtracks : int
+        Number of backtracks.
+
+    Returns
+    -------
+    dict
+        Statistics dictionary.
+    """
+
+    return {
+
+        "board_size": n,
+
+        "solutions": len(solutions),
+
+        "backtracks": backtracks,
+
+        "time_complexity": "O(N!)",
+
+        "space_complexity": "O(N)"
+
+    }
