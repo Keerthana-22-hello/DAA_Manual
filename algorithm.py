@@ -300,65 +300,6 @@ def min_max_naive(arr):
             maximum = x
 
     return minimum, maximum, comparisons
-
-
-
-
-# =====================================================
-# Testing
-# =====================================================
-
-if __name__ == "__main__":
-
-    edges = [
-
-        (7, 0, 1),
-        (5, 0, 3),
-        (8, 1, 2),
-        (9, 1, 3),
-        (7, 1, 4),
-        (5, 2, 4),
-        (15, 3, 4),
-        (6, 3, 5),
-        (8, 4, 5),
-        (9, 4, 6),
-        (11, 5, 6)
-
-    ]
-
-    adjacency = build_adj(edges)
-
-    mst, cost = kruskal(7, edges.copy())
-
-    print("Kruskal MST")
-    print(mst)
-    print("Cost =", cost)
-
-    mst, cost = prim(7, adjacency)
-
-    print("\nPrim MST")
-    print(mst)
-    print("Cost =", cost)
-
-    graph = {
-
-        0: [(1, 4), (2, 1)],
-        1: [(3, 1)],
-        2: [(1, 2), (3, 5)],
-        3: [(4, 3)],
-        4: [(5, 2)],
-        5: []
-
-    }
-
-    dist, prev = dijkstra(graph, 0)
-
-    print("\nDistances")
-    print(dist)
-
-    print("\nPath 0 → 5")
-    print(reconstruct_path(prev, 0, 5))
-    
     
 # =====================================================
 # Matrix Chain Multiplication (Dynamic Programming)
@@ -739,3 +680,61 @@ def nqueen_statistics(n, solutions, backtracks):
         "space_complexity": "O(N)"
 
     }
+
+
+
+# =====================================================
+# Testing
+# =====================================================
+
+if __name__ == "__main__":
+
+    edges = [
+
+        (7, 0, 1),
+        (5, 0, 3),
+        (8, 1, 2),
+        (9, 1, 3),
+        (7, 1, 4),
+        (5, 2, 4),
+        (15, 3, 4),
+        (6, 3, 5),
+        (8, 4, 5),
+        (9, 4, 6),
+        (11, 5, 6)
+
+    ]
+
+    adjacency = build_adj(edges)
+
+    mst, cost = kruskal(7, edges.copy())
+
+    print("Kruskal MST")
+    print(mst)
+    print("Cost =", cost)
+
+    mst, cost = prim(7, adjacency)
+
+    print("\nPrim MST")
+    print(mst)
+    print("Cost =", cost)
+
+    graph = {
+
+        0: [(1, 4), (2, 1)],
+        1: [(3, 1)],
+        2: [(1, 2), (3, 5)],
+        3: [(4, 3)],
+        4: [(5, 2)],
+        5: []
+
+    }
+
+    dist, prev = dijkstra(graph, 0)
+
+    print("\nDistances")
+    print(dist)
+
+    print("\nPath 0 → 5")
+    print(reconstruct_path(prev, 0, 5))
+    
