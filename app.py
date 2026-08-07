@@ -6,6 +6,7 @@ import ex2
 import ex3
 import ex4
 import ex5
+import ex6
 # -------------------------------------------------
 # Page Configuration
 # -------------------------------------------------
@@ -36,6 +37,7 @@ This application demonstrates multiple Design and Analysis of Algorithms experim
 - 🚦 Dijkstra Shortest Path
 - 📌 Interpolation
 - 📌 Divide and Conquer
+- 📐 Matrix Chain Multiplication
 """
 )
 
@@ -53,7 +55,8 @@ page = st.sidebar.radio(
         "🌳 Minimum Spanning Tree",
         "🚦 Dijkstra Algorithm",
         "📌 Interpolation",
-        "📌 Divide and Conquer"
+        "📌 Divide and Conquer",
+        "📐 Matrix Chain Multiplication"
     )
 )
 
@@ -132,6 +135,21 @@ if page == "🏠 Home":
         Find the minimum and maximum element in an array using the Divide and Conquer technique.
         """
                 )
+        st.markdown(
+        """
+        ### 📐 Matrix Chain Multiplication
+
+        Compute the minimum number of scalar
+        multiplications using Dynamic Programming.
+
+        Features
+
+        - DP Cost Table
+        - Split Table
+        - Optimal Parenthesization
+        - Performance Analysis
+        """
+        )
 
 elif page == "🔍 String Matching":
 
@@ -152,3 +170,6 @@ elif page == "📌 Interpolation":
 elif page == "📌 Divide and Conquer":
 
     ex5.app()
+elif page == "📐 Matrix Chain Multiplication":
+    
+    ex6.app()

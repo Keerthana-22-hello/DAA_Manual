@@ -56,11 +56,11 @@ def app():
         k_match, k_comp, k_time = kmp_search(
             text,
             pattern
-        )
+      )
 
         r_match, r_comp, r_time = rabin_karp(
             text,
-            pattern
+            pattern,
         )
 
         # -----------------------------------------
@@ -85,7 +85,7 @@ def app():
                 n_comp,
                 k_comp,
                 r_comp
-            ],
+            ],              
 
             "Execution Time (ms)": [
                 round(n_time, 5),

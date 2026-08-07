@@ -358,3 +358,195 @@ if __name__ == "__main__":
 
     print("\nPath 0 → 5")
     print(reconstruct_path(prev, 0, 5))
+    
+    
+# =====================================================
+# Matrix Chain Multiplication (Dynamic Programming)
+# =====================================================
+
+def matrix_chain_order(dims):
+    """
+    Matrix Chain Multiplication using Dynamic Programming
+
+    Parameters
+    ----------
+    dims : list[int]
+        Matrix dimensions where matrix Ai has dimensions
+        dims[i-1] x dims[i].
+
+    Returns
+    -------
+    m : list
+        DP cost table.
+
+    s : list
+        Split table used to reconstruct
+        the optimal parenthesization.
+    """
+
+    n = len(dims) - 1
+
+    # Cost table
+    m = [
+        [0] * (n + 1)
+        for _ in range(n + 1)
+    ]
+
+    # Split table
+    s = [
+        [0] * (n + 1)
+        for _ in range(n + 1)
+    ]
+
+    # Chain length
+    for length in range(2, n + 1):
+
+        for i in range(1, n - length + 2):
+
+            j = i + length - 1
+
+            m[i][j] = float("inf")
+
+            for k in range(i, j):
+
+                cost = (
+
+                    m[i][k]
+
+                    + m[k + 1][j]
+
+                    + dims[i - 1] * dims[k] * dims[j]
+
+                )
+
+                if cost < m[i][j]:
+
+                    m[i][j] = cost
+
+                    s[i][j] = k
+
+    return m, s
+
+
+# =====================================================
+# Print Optimal Parenthesization
+# =====================================================
+
+def print_optimal_parens(s, i, j):
+    """
+    Recursively constructs the optimal
+    parenthesization.
+    """
+
+    if i == j:
+
+        return f"A{i}"
+
+    k = s[i][j]
+
+    left = print_optimal_parens(
+        s,
+        i,
+        k
+    )
+
+    right = print_optimal_parens(
+        s,
+        k + 1,
+        j
+    )
+
+    return f"({left} × {right})"
+
+
+# =====================================================
+# Convert DP Cost Table to DataFrame
+# =====================================================
+
+def cost_table_dataframe(m, n):
+    """
+    Returns the DP Cost Table
+    as a pandas DataFrame.
+    """
+
+    import pandas as pd
+
+    rows = []
+
+    for i in range(1, n + 1):
+
+        row = {"Matrix": f"A{i}"}
+
+        for j in range(1, n + 1):
+
+            if j < i:
+
+                row[f"A{j}"] = "---"
+
+            else:
+
+                row[f"A{j}"] = m[i][j]
+
+        rows.append(row)
+
+    return pd.DataFrame(rows)
+
+
+# =====================================================
+# Convert Split Table to DataFrame
+# =====================================================
+
+def split_table_dataframe(s, n):
+    """
+    Returns the Split Table
+    as a pandas DataFrame.
+    """
+
+    import pandas as pd
+
+    rows = []
+
+    for i in range(1, n + 1):
+
+        row = {"Matrix": f"A{i}"}
+
+        for j in range(1, n + 1):
+
+            if j <= i:
+
+                row[f"A{j}"] = "-"
+
+            else:
+
+                row[f"A{j}"] = s[i][j]
+
+        rows.append(row)
+
+    return pd.DataFrame(rows)
+
+
+# =====================================================
+# Performance Statistics
+# =====================================================
+
+def matrix_chain_statistics(dims):
+    """
+    Returns useful statistics
+    about the Matrix Chain problem.
+    """
+
+    n = len(dims) - 1
+
+    dp_cells = n * n
+
+    return {
+
+        "matrices": n,
+
+        "dp_cells": dp_cells,
+
+        "time_complexity": "O(n³)",
+
+        "space_complexity": "O(n²)"
+
+    }
